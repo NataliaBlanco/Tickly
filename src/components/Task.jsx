@@ -1,7 +1,7 @@
 import { FaRegTrashAlt } from "react-icons/fa";
 
 
-export default function Task({ tasks, setTasks }) {
+export default function Task({ tasks, setTasks, inputValue }) {
 
     const onDelete = (taskId) => {
         setTasks(prevTasks => prevTasks.filter((task) => task.id !== taskId))

@@ -11,8 +11,9 @@ const [tasks, setTasks] = useState(() => {
   const savedTasks = localStorage.getItem('tasks');
   return savedTasks ? JSON.parse(savedTasks) : [];
 })
+  const [inputValue, setInputValue] = useState('')
 
-const titleClass = "title";
+
   return (
 <div className="app-container">
     <Header />
@@ -23,6 +24,8 @@ const titleClass = "title";
           setEstado={setEstado}
           tasks={tasks}
           setTasks={setTasks}
+          inputValue={inputValue}
+          setInputValue={setInputValue}
         />
     </div>
 </div>

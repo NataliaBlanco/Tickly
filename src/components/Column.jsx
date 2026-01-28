@@ -9,24 +9,25 @@ export default function Column({
     tasks,
     setEstado,
     setTasks,
-    estadoColumna }) {
+    estadoColumna,
+    inputValue,
+    setInputValue}) {
     
-    
-    function enterDownTask(ev) {
-        if (ev.key === "Enter" && ev.target.value.trim() !== "") {
-            ev.preventDefault();
-            const uuid = crypto.randomUUID();
-            addTask(ev.target.value, uuid, estadoColumna)
-            ev.target.value = "";
-            setEstado('')
-        }
+   
+    function handleSubmit(e) {
+        e.preventDefault();
+        console.log(inputValue)
+        const uuid = crypto.randomUUID();
+        addTask(inputValue, uuid, estadoColumna)
+        setEstado('')
+        setInputValue('')
     }
     
     return (
         <> 
         <section>
             <h2>{estadoColumna == 'to-do' ? 'Por Hacer' : estadoColumna =='doing' ? 'Haciendo' :'Hecho'}</h2>
-            <form action="" onSubmit={(e) => e.preventDefault()}>
+            <form  onSubmit={handleSubmit}>
                     <button type="button" onClick={() => {
                         handleClick(estadoColumna)
                     }}>
@@ -37,11 +38,15 @@ export default function Column({
                     <label htmlFor="task_todo_title"></label>
                         <input
                             type="text"
-                            name=""
+                            id="task_todo_title"
+                            name="inputTask"
                             placeholder='Escribe tu tarea'  
                             className='task-input'
-                            onKeyDown={enterDownTask}>
-                        </input></>)}
+                            value={inputValue}
+                            onChange={e => setInputValue(e.target.value)}>
+                        </input>
+                    </>
+                    )}
             </form>
             <ul>
                 <Task
